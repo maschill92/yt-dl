@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "importHelpers": true,
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "target": "ES2019",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "composite": true
+  },
+  "include": ["src/**/*"]
+}
