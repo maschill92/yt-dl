@@ -20,7 +20,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.0.1",
+    "@oclif/plugin-plugins": "^2.0.12",
     "fluent-ffmpeg": "^2.1.2",
     "ytdl-core": "^4.10.0",
     "ytpl": "^2.2.3"
