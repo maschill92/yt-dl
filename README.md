@@ -16,8 +16,23 @@ oclif example Hello World CLI
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 # Usage
 <!-- usage -->
+```sh-session
+$ npm install -g yt-dl
+$ yt-dl COMMAND
+running command...
+$ yt-dl (--version)
+yt-dl/0.0.0 win32-x64 node-v16.13.2
+$ yt-dl --help [COMMAND]
+USAGE
+  $ yt-dl COMMAND
+...
+```
+<!-- usagestop -->
 ```sh-session
 $ npm install -g yt-mp3
 $ yt-mp3 COMMAND
@@ -44,6 +59,50 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`yt-dl help [COMMAND]`](#yt-dl-help-command)
+* [`yt-dl video [FILE]`](#yt-dl-video-file)
+
+## `yt-dl help [COMMAND]`
+
+Display help for yt-dl.
+
+```
+USAGE
+  $ yt-dl help [COMMAND] [-n]
+
+ARGUMENTS
+  COMMAND  Command to show help for.
+
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for yt-dl.
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.10/src/commands/help.ts)_
+
+## `yt-dl video [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ yt-dl video [FILE] [-n <value>] [-f]
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ yt-dl video
+```
+
+_See code: [dist/commands/video.ts](https://github.com/maschill92/yt-dl/blob/v0.0.0/dist/commands/video.ts)_
+<!-- commandsstop -->
 * [`yt-mp3 hello PERSON`](#yt-mp3-hello-person)
 * [`yt-mp3 hello world`](#yt-mp3-hello-world)
 * [`yt-mp3 help [COMMAND]`](#yt-mp3-help-command)

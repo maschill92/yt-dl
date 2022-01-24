@@ -10,7 +10,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "composite": true
+    "composite": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"]
 }

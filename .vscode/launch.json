@@ -7,11 +7,16 @@
     {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "cli playlist",
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}\\bin\\dev",
-      "args": ["video", "abc"]
+      "args": [
+        "playlist",
+        "PLibr5Dy_C8auLMJ1lDkISwwIaDDhSybxz",
+        "-f",
+        "<$= playlist $>/<$= author $>\\<$= title $>.mp3"
+      ]
     }
   ]
 }
