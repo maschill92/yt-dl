@@ -4,12 +4,12 @@ import tmp from "tmp";
 import { renderTemplate } from "./template";
 
 export abstract class TemplatedFilePath {
-  private readonly _templateData: object;
+  private readonly _templateData: Record<string, string>;
   private readonly _parsedPath: ParsedPath;
   private readonly _path: string;
   private _tmpFile: string | null = null;
 
-  constructor(filePathTemplate: string, templateData: object) {
+  constructor(filePathTemplate: string, templateData: Record<string, string>) {
     this._templateData = templateData;
     const parsedTemplatePath = path.parse(path.normalize(filePathTemplate));
 
@@ -47,9 +47,10 @@ export abstract class TemplatedFilePath {
   }
 
   get tmpFile(): string {
-    if (this._tmpFile != null) {
+    if (this._tmpFile !== null) {
       return this._tmpFile;
     }
+
     this._tmpFile = tmp.fileSync({ template: `XXXXXX-${this.name}` }).name;
     return this._tmpFile;
   }
@@ -60,7 +61,7 @@ export abstract class TemplatedFilePath {
   }
 }
 
-interface YoutubeVideoTemplateData {
+interface YoutubeVideoTemplateData extends Record<string, string> {
   id: string;
   title: string;
   author: string;

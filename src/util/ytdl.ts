@@ -1,4 +1,4 @@
-import { Readable } from "stream";
+import { Readable } from "node:stream";
 import ytdl from "ytdl-core";
 import ytpl from "ytpl";
 

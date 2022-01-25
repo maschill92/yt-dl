@@ -7,8 +7,9 @@
     "rootDir": "src",
     "strict": true,
     "target": "ES2019",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["/src/*"]
     },
     "composite": true,
     "esModuleInterop": true

@@ -1,9 +1,6 @@
 import { Readable } from "stream";
-import tmp from "tmp";
-import path from "path";
 import fs from "fs";
-import sanitizeFilename from "sanitize-filename";
-import { TemplatedFilePath } from "./VideoFilePathNormalizer";
+import { TemplatedFilePath } from "./templated-file-path";
 
 export async function convertInputStreamToFile(
   inputStream: Readable,
@@ -43,14 +40,4 @@ async function importFluentFfmpeg() {
   fluentFfmpeg.setFfmpegPath(ffmpegInstaller.path);
 
   return fluentFfmpeg.default;
-}
-
-function sanitizeAndNormalizeFilePath(pathName: string) {
-  const normalized = path.normalize(pathName);
-  const parsedPath = path.parse(normalized);
-
-  return normalized
-    .split(path.sep)
-    .map((pathItem) => sanitizeFilename(pathItem))
-    .join(path.sep);
 }

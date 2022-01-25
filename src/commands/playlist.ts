@@ -1,11 +1,8 @@
 import { Command, Flags } from "@oclif/core";
-import {
-  fetchPlaylistInfo,
-  createVideoStreamFromVideoId,
-} from "../util/ytdl";
+import { fetchPlaylistInfo, createVideoStreamFromVideoId } from "../util/ytdl";
 import { convertInputStreamToFile } from "../util/ffmpeg";
-import ux, { cli } from "cli-ux";
-import { YoutubePlaylistVideoTemplatedFilePath } from "../util/VideoFilePathNormalizer";
+import { cli } from "cli-ux";
+import { YoutubePlaylistVideoTemplatedFilePath } from "../util/templated-file-path";
 
 export default class Playlist extends Command {
   static description = "Download all the videos in a youtube playlist.";
@@ -44,45 +41,38 @@ export default class Playlist extends Command {
     );
 
     // use for loop to allow early breakout?
+    await playlistInfo.items.reduce(async (promiseChain, playlistVideo) => {
+      // await recieved promise to ensure the next video is downloaded only after the previous video
+      await promiseChain;
 
-    await playlistInfo.items.reduce(
-      async (promiseChain, playlistVideo, idx, arr) => {
-        // await recieved promise to ensure the next video is downloaded only after the previous video
-        await promiseChain;
-
-        const templatedPath = new YoutubePlaylistVideoTemplatedFilePath(
-          fileNameTemplate,
-          {
-            id: playlistVideo.id,
-            title: playlistVideo.title,
-            author: playlistVideo.author.name,
-            playlist: playlistInfo.title,
-            playlistId: playlistInfo.id,
-          }
-        );
-
-        cli.action.start(`Downloading ${templatedPath.name}`);
-
-        try {
-          const youtubeVideoStream = createVideoStreamFromVideoId(
-            playlistVideo.id
-          );
-          await convertInputStreamToFile(youtubeVideoStream, {
-            file: templatedPath,
-          });
-          cli.action.stop();
-        } catch (err) {
-          cli.action.stop();
-          this.warn(
-            `Failed to download ${templatedPath.name}. Video ID ${playlistVideo.id}.`
-          );
-          this.warn(err as string | Error);
-          const continueParsing = await cli.confirm(
-            "Continue processing playlist?"
-          );
+      const templatedPath = new YoutubePlaylistVideoTemplatedFilePath(
+        fileNameTemplate,
+        {
+          id: playlistVideo.id,
+          title: playlistVideo.title,
+          author: playlistVideo.author.name,
+          playlist: playlistInfo.title,
+          playlistId: playlistInfo.id,
         }
-      },
-      Promise.resolve()
-    );
+      );
+
+      cli.action.start(`Downloading ${templatedPath.name}`);
+
+      try {
+        const youtubeVideoStream = createVideoStreamFromVideoId(
+          playlistVideo.id
+        );
+        await convertInputStreamToFile(youtubeVideoStream, {
+          file: templatedPath,
+        });
+        cli.action.stop();
+      } catch (error) {
+        cli.action.stop();
+        this.warn(
+          `Failed to download ${templatedPath.name}. Video ID ${playlistVideo.id}.`
+        );
+        this.warn(error as string | Error);
+      }
+    }, Promise.resolve());
   }
 }

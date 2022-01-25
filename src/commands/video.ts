@@ -1,6 +1,6 @@
-import { convertInputStreamToFile } from "@/util/ffmpeg";
-import { YoutubeVideoTemplatedFilePath } from "@/util/VideoFilePathNormalizer";
-import { createVideoStreamFromInfo, fetchVideoInfo } from "@/util/ytdl";
+import { convertInputStreamToFile } from "../util/ffmpeg";
+import { YoutubeVideoTemplatedFilePath } from "../util/templated-file-path";
+import { createVideoStreamFromInfo, fetchVideoInfo } from "../util/ytdl";
 import { Command, Flags } from "@oclif/core";
 import { cli } from "cli-ux";
 

@@ -1,6 +1,4 @@
 import * as ejs from "ejs";
-import path from "path";
-import sanitizeFilename from "sanitize-filename";
 
 /**
  * Render a ejs template string using $ as the delimiter.
