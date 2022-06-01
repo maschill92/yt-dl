@@ -21,7 +21,7 @@
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
     "cli-ux": "^6.0.8",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.8",
     "fluent-ffmpeg": "^2.1.2",
     "sanitize-filename": "^1.6.3",
     "tmp": "^0.2.1",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@oclif/test": "^2",
     "@types/chai": "^4",
-    "@types/ejs": "^3.1.0",
+    "@types/ejs": "^3.1.1",
     "@types/fluent-ffmpeg": "^2.1.20",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.9.4",
